@@ -9,13 +9,21 @@
         <script src='./js/main.js'></script>
     </head>
     <body>
-        <h1>Los Santos Senate</h1>
-        <div>
-            <ul>
-                <li v-on:click="changePage('Home')">Home</li>
-                <li v-on:click="changePage('Elections')">Elections</li>
-                <li v-on:click="changePage('Law Vote')">Law Vote</li>
-            </ul>
+        <div id="container">
+            <h1>Los Santos Senate</h1>
+            <div>
+                <ul>
+                    <li v-on:click="changePage('Home')">Home</li>
+                    <li v-on:click="changePage('Elections')">Elections</li>
+                    <li v-on:click="changePage('Law Vote')">Law Vote</li>
+                </ul>
+            </div>
+    
+            <main>
+                <div v-if="page == 'Home'">
+                    <p>Home</p>
+                </div>
+            </main>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
