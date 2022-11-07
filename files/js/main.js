@@ -4,7 +4,8 @@ createApp({
   data() {
     return {
       count: 0,
-      page: "Home"
+      page: "Home",
+      show: false
     }
   }
 }).mount('#app')
