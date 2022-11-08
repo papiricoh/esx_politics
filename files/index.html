@@ -50,7 +50,7 @@
         </div>
         <div v-if="page == 'Election'">
           <h2 v-if="election == true">ELECTION DAY</h2>
-          <h3 class="subtitle">Avariable candidates to elect:</h3>
+          <h3 class="subtitle">Avariable candidates to elect: {{count}}</h3>
           <table class="table">
             <tr>
               <th>Name</th>
@@ -68,11 +68,14 @@
               <td>{{candidate.name}}</td>
               <td>{{candidate.lastname}}</td>
               <td>{{candidate.party}}</td>
-              <td v-if="candidate.voted == false && already_voted == false">
+              <td
+                @click="vote"
+                v-if="candidate.voted == false && already_voted == false"
+              >
                 <div class="button is-info">Vote</div>
               </td>
               <td v-else-if="candidate.voted == false && already_voted == true">
-                <div class="button is-danger">Not Voted</div>
+                <div class="button is-danger">Already Voted</div>
               </td>
               <td v-else>
                 <div class="button is-success">Voted</div>
