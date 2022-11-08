@@ -11,17 +11,50 @@
         <script defer src='./js/main.js'></script>
     </head>
     <body>
-        <div id="container">
+        <div id="app">
             <h1>Los Santos Senate</h1>
-            <div id="app">
-                <button @click="count++">
-                  Count is: {{ count }}
-                </button>
-              </div>
     
             <main>
+                <div>
+                    <h2><button @click="page = 'Home'">Home</button></h2>
+                    <h2><button @click="page = 'Seats'">Seats</button></h2>
+                    <h2><button @click="page = 'Election'">Election</button></h2>
+                    <h2><button @click="page = 'Senate Voting'">Senate Voting</button></h2>
+                    <h2><button @click="page = 'Executive Power'">Executive Power</button></h2>
+                </div>
                 <div v-if="page == 'Home'">
-                    <p>Home</p>
+                    <p>DEBUG: Home</p>
+                    <p>Welcome to the Los Santos Senate Web, here you can vote in an Election for the seats on the senate, president and referendums, also if you are already a member of the senate or the executive you can suggest laws to be approved in the senate.</p>
+                </div>
+                <div v-if="page == 'Seats'">
+                    <p>DEBUG: Seats</p>
+                </div>
+                <div v-if="page == 'Election'">
+                    <p>DEBUG: Election</p>
+                    <h2 v-if="election == true">ELECTION DAY</h2>
+                    <h3>Avariable candidates to elect</h3>
+                    <table border="1">
+                        <tr>
+                            <th>Name</th>
+                            <th>Last Name</th>
+                            <th>Party</th>
+                            <th>Voted</th>
+                            <th>Number of votes</th>
+                        </tr>
+                        <tr v-for="{name, lastname, party, voted, num_votes} in candidates">
+                            <td>{{name}}</td>
+                            <td>{{lastname}}</td>
+                            <td>{{party}}</td>
+                            <td>{{voted}}</td>
+                            <td>{{num_votes}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div v-if="page == 'Senate Voting'">
+                    <p>DEBUG: Senate Voting</p>
+                </div>
+                <div v-if="page == 'Executive Power'">
+                    <p>DEBUG: Executive Power</p>
                 </div>
             </main>
         </div>
