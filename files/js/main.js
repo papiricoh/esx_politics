@@ -1,8 +1,8 @@
-const { createApp } = Vue
+  // import { createApp } from 'vue'
+  const { createApp } = Vue
 
 
-
-createApp({
+  createApp({
   data() {
     return {
       count: 0,
@@ -16,4 +16,4 @@ createApp({
       voted: false
     }
   }
-}).mount('#app')
+  }).mount('#app')
