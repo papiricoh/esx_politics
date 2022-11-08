@@ -23,7 +23,7 @@
       
         ]
       },
-      voted: false
+      already_voted: false
     }
   }
-  }).mount('#app')
+}).mount('#app')

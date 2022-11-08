@@ -1,3 +1,5 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+@extend %block;
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.5s ease;
