@@ -8,6 +8,8 @@
         <link rel='stylesheet' type='text/css' media='screen' href='./css/main.css'>
         <!-- <script defer src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> versión antigua de vue--> 
         <script defer src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script defer src="./node_modules/chart.js/dist/chart.js"></script>
+        <script defer src="./node_modules/vue-chartjs/dist/index.js"></script>
         <script defer src='./js/main.js'></script>
     </head>
     <body>
@@ -41,13 +43,19 @@
                             <th>Voted</th>
                             <th>Number of votes</th>
                         </tr>
-                        <tr v-for="{name, lastname, party, voted, num_votes} in candidates">
-                            <td>{{name}}</td>
+                        <tr v-for="candidate in v_candidates.results">
+                            <!-- <td>{{candidate.name}}</td>
                             <td>{{lastname}}</td>
                             <td>{{party}}</td>
                             <td>{{voted}}</td>
-                            <td>{{num_votes}}</td>
+                            <td>{{num_votes}}</td> -->
+                            <td>{{candidate.name}}</td>
+                            <td>{{candidate.lastname}}</td>
+                            <td>{{candidate.party}}</td>
+                            <td>{{candidate.voted}}</td>
+                            <td>{{candidate.num_votes}}</td>
                         </tr>
+                        
                     </table>
                 </div>
                 <div v-if="page == 'Senate Voting'">
