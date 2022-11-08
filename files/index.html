@@ -30,6 +30,24 @@
                 </div>
                 <div v-if="page == 'Election'">
                     <p>DEBUG: Election</p>
+                    <h2 v-if="election == true">ELECTION DAY</h2>
+                    <h3>Avariable candidates to elect</h3>
+                    <table border="1">
+                        <tr>
+                            <th>Name</th>
+                            <th>Last Name</th>
+                            <th>Party</th>
+                            <th>Voted</th>
+                            <th>Number of votes</th>
+                        </tr>
+                        <tr v-for="{name, lastname, party, voted, num_votes} in candidates">
+                            <td>{{name}}</td>
+                            <td>{{lastname}}</td>
+                            <td>{{party}}</td>
+                            <td>{{voted}}</td>
+                            <td>{{num_votes}}</td>
+                        </tr>
+                    </table>
                 </div>
                 <div v-if="page == 'Senate Voting'">
                     <p>DEBUG: Senate Voting</p>
