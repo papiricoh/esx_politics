@@ -102,14 +102,30 @@
                 <tr>
                   <th>Law Name</th>
                   <th>Law Type</th>
+                  <th>Proposed by</th>
                   <th>Read</th>
                   <th>For</th>
                   <th>Against</th>
                   <th>Abstencions</th>
+                  <th>Active</th>
                 </tr>
                 <tr v-for="law in laws.result">
                   <td>{{law.title}}</td>
-                  <th class="button is-info">Read</th>
+                  <td>{{law.type}}</td>
+                  <td>{{law.proposed_by}}</td>
+                  <td><div class="button is-info">Read</div></td>
+                  <td><div v-if="law.already_voted == 0" @click="law.for++, law.already_voted = 1" class="button is-success is-light">{{law.for}}</div>
+                    <div v-else-if="law.already_voted == 1" @click="law.for--, law.already_voted = 0" class="button is-success">{{law.for}}</div>
+                    <div v-else class="button is-success is-light">{{law.for}}</div></td>
+                  <td><div v-if="law.already_voted == 0" @click="law.against++, law.already_voted = 2" class="button is-danger is-light">{{law.against}}</div>
+                    <div v-else-if="law.already_voted == 2" @click="law.against--, law.already_voted = 0" class="button is-danger">{{law.against}}</div>
+                    <div v-else class="button is-danger is-light">{{law.against}}</div></td>
+                  <td><div v-if="law.already_voted == 0" @click="law.abs++, law.already_voted = 3" class="button is-light">{{law.abs}}</div>
+                    <div v-else-if="law.already_voted == 3" @click="law.abs--, law.already_voted = 0" class="button is-white">{{law.abs}}</div>
+                    <div v-else class="button is-light">{{law.abs}}</div></td>
+                  <td><div v-if="law.in_active && law.is_signed" class="button is-sucess">Active</div>
+                    <div v-else-if="!law.in_active && !law.is_signed"  class="button is-warning">Pending Vote</div>
+                    <div v-else class="button is-info">Pending Presidential Aproval</div></td>
                 </tr>
               </table>
             </div>
@@ -142,7 +158,7 @@
               </div>
               <br>
   
-              <button class="button is-primary">Publish Law</button>
+              <button @click="createLaw()" class="button is-primary">Publish Law</button>
             </form>
           </div>
           <div v-else class="box">
