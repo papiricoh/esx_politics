@@ -31,8 +31,8 @@
           <button class="button is-text" @click="page = 'Senate Voting'">
             Senate Voting
           </button>
-          <butto class="button is-text" @click="page = 'Executive Power'"
-            >Executive Power</butto
+          <button class="button is-text" @click="page = 'Executive Power'"
+            >Executive Power</button
           >
         </div>
         <div v-if="page == 'Home'">
@@ -69,7 +69,7 @@
               <td>{{candidate.lastname}}</td>
               <td>{{candidate.party}}</td>
               <td
-                @click="vote"
+                @click="candidate.voted = !candidate.voted, already_voted = !already_voted"
                 v-if="candidate.voted == false && already_voted == false"
               >
                 <div class="button is-info">Vote</div>
@@ -77,7 +77,7 @@
               <td v-else-if="candidate.voted == false && already_voted == true">
                 <div class="button is-danger">Already Voted</div>
               </td>
-              <td v-else>
+              <td @click="candidate.voted = !candidate.voted, already_voted = !already_voted" v-else>
                 <div class="button is-success">Voted</div>
               </td>
               <td>{{candidate.num_votes}}</td>
@@ -86,7 +86,7 @@
         </div>
         <div v-if="page == 'Senate Voting'">
           <p>DEBUG: Senate Voting</p>
-          
+
 
 
           <!-- CREADOR DE LEYES -->
@@ -122,6 +122,15 @@
           <p>DEBUG: Executive Power</p>
         </div>
       </main>
+      <div v-if="debug_mode" class="tile is-ancestor">
+        <div class="tile is-4 is-vertical is-parent">
+          <div class="tile is-child box">
+            <h1 class="subtitle">debug_mode:</h1> 
+            <button v-if="!is_senator" class="button is-danger" @click="is_senator = !is_senator">Senator</button>
+            <button v-else class="button is-success" @click="is_senator = !is_senator">Senator</button>
+          </div>
+        </div>
+      </div>
     </div>
     <div
       class="box"
