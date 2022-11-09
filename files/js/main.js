@@ -11,6 +11,8 @@ createApp({
       is_senator: false,
       is_president: false,
       is_member_of_cabinet: false,
+      is_election_day: false,
+      days_until_next_election: 12,
       // Election Variables
       election: false,
       v_candidates: {
@@ -20,6 +22,12 @@ createApp({
           { name: "jerry", lastname: "Smith", party: "Albuquerque", voted: false, num_votes: 20 },
           { name: "Rodrigo", lastname: "De Borbon", party: "Oviedin", voted: false, num_votes: 20 },
           { name: "Juan", lastname: "Juanito", party: "JJ", voted: false, num_votes: 20 }
+
+        ]
+      },
+      laws: {
+        result: [
+          { title: "juan", lastname: "Cuesta", party: "Cimadevilla", voted: false, num_votes: 50 }
 
         ]
       },

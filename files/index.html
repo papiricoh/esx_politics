@@ -49,85 +49,131 @@
           <div class="box">I'm in a box.</div>
         </div>
         <div v-if="page == 'Election'">
-          <h2 v-if="election == true">ELECTION DAY</h2>
-          <h3 class="subtitle">Avariable candidates to elect: {{count}}</h3>
-          <table class="table">
-            <tr>
-              <th>Name</th>
-              <th>Last Name</th>
-              <th>Party</th>
-              <th>Voted</th>
-              <th>Number of votes</th>
-            </tr>
-            <tr v-for="candidate in v_candidates.results">
-              <!-- <td>{{candidate.name}}</td>
-                            <td>{{lastname}}</td>
-                            <td>{{party}}</td>
-                            <td>{{voted}}</td>
-                            <td>{{num_votes}}</td> -->
-              <td>{{candidate.name}}</td>
-              <td>{{candidate.lastname}}</td>
-              <td>{{candidate.party}}</td>
-              <td
-                @click="candidate.voted = !candidate.voted, already_voted = !already_voted"
-                v-if="candidate.voted == false && already_voted == false"
-              >
-                <div class="button is-info">Vote</div>
-              </td>
-              <td v-else-if="candidate.voted == false && already_voted == true">
-                <div class="button is-danger">Already Voted</div>
-              </td>
-              <td @click="candidate.voted = !candidate.voted, already_voted = !already_voted" v-else>
-                <div class="button is-success">Voted</div>
-              </td>
-              <td>{{candidate.num_votes}}</td>
-            </tr>
-          </table>
+          <div v-if="is_election_day" class="box"> <!-- SI ES DIA DE ELECCIONES -->
+            <h2 v-if="election == true">ELECTION DAY</h2>
+            <h3 class="subtitle">Avariable candidates to elect: {{v_candidates.results.length}}</h3>
+            <table class="table">
+              <tr>
+                <th>Name</th>
+                <th>Last Name</th>
+                <th>Party</th>
+                <th>Voted</th>
+                <th>Number of votes</th>
+              </tr>
+              <tr v-for="candidate in v_candidates.results">
+                <!-- <td>{{candidate.name}}</td>
+                              <td>{{lastname}}</td>
+                              <td>{{party}}</td>
+                              <td>{{voted}}</td>
+                              <td>{{num_votes}}</td> -->
+                <td>{{candidate.name}}</td>
+                <td>{{candidate.lastname}}</td>
+                <td>{{candidate.party}}</td>
+                <td
+                  @click="candidate.voted = !candidate.voted, already_voted = !already_voted, candidate.num_votes++"
+                  v-if="candidate.voted == false && already_voted == false"
+                >
+                  <div class="button is-info">Vote</div>
+                </td>
+                <td v-else-if="candidate.voted == false && already_voted == true">
+                  <div class="button is-danger">Already Voted</div>
+                </td>
+                <td @click="candidate.voted = !candidate.voted, already_voted = !already_voted, candidate.num_votes--" v-else>
+                  <div class="button is-success">Voted</div>
+                </td>
+                <td>{{candidate.num_votes}}</td>
+              </tr>
+            </table>
+          </div>
+          <div v-else>
+            <div class="box">
+              <h1 class="subtitle">Not in election day</h1>
+              <h1 class="text">Next election in {{days_until_next_election}} days...</h1>
+
+            </div>
+          </div>
+          
         </div>
         <div v-if="page == 'Senate Voting'">
-          <p>DEBUG: Senate Voting</p>
-
-
-
-          <!-- CREADOR DE LEYES -->
-          <form class="box">
-            <div class="field">
-              <label class="label">New Law</label>
-              <div class="control">
-                <input
-                  class="input is-rounded"
-                  type="law_title"
-                  placeholder="5th Amenment"
-                />
+          <div v-if="is_senator" class="box">
+            <div class="box">
+              <h1 class="subtitle">Current laws</h1>
+              <table class="table">
+                <tr>
+                  <th>Law Name</th>
+                  <th>Law Type</th>
+                  <th>Read</th>
+                  <th>For</th>
+                  <th>Against</th>
+                  <th>Abstencions</th>
+                </tr>
+                <tr v-for="law in laws.result">
+                  <td>{{law.title}}</td>
+                  <th class="button is-info">Read</th>
+                </tr>
+              </table>
+            </div>
+            <!-- CREADOR DE LEYES -->
+            <form class="box">
+              <div class="field">
+                <label class="label">New Law</label>
+                <div class="control">
+                  <input
+                    class="input is-rounded"
+                    type="law_title"
+                    placeholder="5th Amendment"
+                  />
+                </div>
               </div>
-            </div>
-            <div class="select is-info">
-              <select>
-                <option>Select Law Type</option>
-                <option>Amendment</option>
-                <option>Bill</option>
-                <option>National Law</option>
-                <option>Regional Law</option>
-                <option>District Law</option>
-              </select>
-            </div>
-            <div class="control">
-              <textarea class="textarea has-fixed-size" placeholder="Law Structure and descripcion"></textarea>
-            </div>
+              <div class="select is-info">
+                <select>
+                  <option>Select Law Type</option>
+                  <option>Amendment</option>
+                  <option>Bill</option>
+                  <option>National Law</option>
+                  <option>Regional Law</option>
+                  <option>District Law</option>
+                </select>
+              </div>
+              <br>
+              <br>
+              <div class="control">
+                <textarea class="textarea has-fixed-size" placeholder="Law Structure and descripcion"></textarea>
+              </div>
+              <br>
+  
+              <button class="button is-primary">Publish Law</button>
+            </form>
+          </div>
+          <div v-else class="box">
+            <h1 class="subtitle">This page is only for senators</h1>
+          </div>
 
-            <button class="button is-primary">Publish Law</button>
-          </form>
+
         </div>
         <div v-if="page == 'Executive Power'">
           <p>DEBUG: Executive Power</p>
         </div>
       </main>
+      <br>
       <div v-if="debug_mode" class="tile is-ancestor">
         <div class="tile is-4 is-vertical is-parent">
           <div class="tile is-child box">
-            <h1 class="subtitle">debug_mode:</h1> 
-            <button v-if="!is_senator" class="button is-danger" @click="is_senator = !is_senator">Senator</button>
+            <h1 class="subtitle">Debug Menu:</h1> 
+            <button v-if="!is_election_day" class="button is-danger" @click="is_election_day = !is_election_day">Not Election Day</button>
+            <button v-else class="button is-success" @click="is_election_day = !is_election_day">Election Day</button>
+            <br>
+            <br>
+            <button v-if="!is_senator" class="button is-danger" @click="is_senator = !is_senator">Not Senator</button>
             <button v-else class="button is-success" @click="is_senator = !is_senator">Senator</button>
+            <br>
+            <br>
+            <button v-if="!is_president" class="button is-danger" @click="is_president = !is_president">Not President</button>
+            <button v-else class="button is-success" @click="is_president = !is_president">President</button>
+            <br>
+            <br>
+            <button v-if="!is_member_of_cabinet" class="button is-danger" @click="is_member_of_cabinet = !is_member_of_cabinet">Not Member of Cabinet</button>
+            <button v-else class="button is-success" @click="is_member_of_cabinet = !is_member_of_cabinet">Member of Cabinet</button>
           </div>
         </div>
       </div>
