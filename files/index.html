@@ -86,29 +86,33 @@
         </div>
         <div v-if="page == 'Senate Voting'">
           <p>DEBUG: Senate Voting</p>
+          
+
 
           <!-- CREADOR DE LEYES -->
           <form class="box">
             <div class="field">
-              <label class="label">Law title</label>
+              <label class="label">New Law</label>
               <div class="control">
                 <input
-                  class="input"
+                  class="input is-rounded"
                   type="law_title"
                   placeholder="5th Amenment"
                 />
               </div>
             </div>
-
-            <div class="field">
-              <label class="label"></label>
-              <div class="control">
-                <input
-                  class="input"
-                  type="desc"
-                  placeholder="Law Structure and descripcion"
-                />
-              </div>
+            <div class="select is-info">
+              <select>
+                <option>Select Law Type</option>
+                <option>Amendment</option>
+                <option>Bill</option>
+                <option>National Law</option>
+                <option>Regional Law</option>
+                <option>District Law</option>
+              </select>
+            </div>
+            <div class="control">
+              <textarea class="textarea has-fixed-size" placeholder="Law Structure and descripcion"></textarea>
             </div>
 
             <button class="button is-primary">Publish Law</button>
