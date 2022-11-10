@@ -36,13 +36,14 @@
           >
         </div>
         <div v-if="page == 'Home'">
-          <p>DEBUG: Home</p>
-          <p>
-            Welcome to the Los Santos Senate Web, here you can vote in an
-            Election for the seats on the senate, president and referendums,
-            also if you are already a member of the senate or the executive you
-            can suggest laws to be approved in the senate.
-          </p>
+          <div class="box">
+            <p>
+              Welcome to the Los Santos Senate Web, here you can vote in an
+              Election for the seats on the senate, president and referendums,
+              also if you are already a member of the senate or the executive you
+              can suggest laws to be approved in the senate.
+            </p>
+          </div>
         </div>
         <div v-if="page == 'Seats'">
           <p>DEBUG: Seats</p>
@@ -76,7 +77,7 @@
                   <div class="button is-info">Vote</div>
                 </td>
                 <td v-else-if="candidate.voted == false && already_voted == true">
-                  <div class="button is-danger">Already Voted</div>
+                  <div class="button is-danger">Voted</div>
                 </td>
                 <td @click="candidate.voted = !candidate.voted, already_voted = !already_voted, candidate.num_votes--" v-else>
                   <div class="button is-success">Voted</div>
@@ -97,7 +98,7 @@
         <div v-if="page == 'Senate Voting'">
           <div v-if="is_senator" class="box">
             <div class="box">
-              <h1 class="subtitle">Current laws</h1>
+              <h1 class="subtitle">Pending laws</h1>
               <table class="table">
                 <tr>
                   <th>Law Name</th>
@@ -110,24 +111,24 @@
                   <th>Active</th>
                 </tr>
                 <tr v-for="law in laws.result">
-                  <td>{{law.title}}</td>
-                  <td>{{law.type}}</td>
-                  <td>{{law.proposed_by}}</td>
-                  <td><div class="button is-info">Read</div></td>
-                  <td><div v-if="law.already_voted == 0" @click="law.for++, law.already_voted = 1" class="button is-success is-light">{{law.for}}</div>
+                  <td v-if="!law.is_signed">{{law.title}}</td>
+                  <td v-if="!law.is_signed">{{law.type}}</td>
+                  <td v-if="!law.is_signed">{{law.proposed_by}}</td>
+                  <td v-if="!law.is_signed"><div class="button is-info" @click="reading_law_title = law.title, reading_law_type = law.type, reading_law_desc = law.desc, page = 'Law Reader'">Read</div></td>
+                  <td v-if="!law.is_signed"><div v-if="law.already_voted == 0" @click="law.for++, law.already_voted = 1" class="button is-success is-light">{{law.for}}</div>
                     <div v-else-if="law.already_voted == 1" @click="law.for--, law.already_voted = 0" class="button is-success">{{law.for}}</div>
                     <div v-else class="button is-success is-light">{{law.for}}</div></td>
-                  <td><div v-if="law.already_voted == 0" @click="law.against++, law.already_voted = 2" class="button is-danger is-light">{{law.against}}</div>
+                  <td v-if="!law.is_signed"><div v-if="law.already_voted == 0" @click="law.against++, law.already_voted = 2" class="button is-danger is-light">{{law.against}}</div>
                     <div v-else-if="law.already_voted == 2" @click="law.against--, law.already_voted = 0" class="button is-danger">{{law.against}}</div>
                     <div v-else class="button is-danger is-light">{{law.against}}</div></td>
-                  <td><div v-if="law.already_voted == 0" @click="law.abs++, law.already_voted = 3" class="button is-light">{{law.abs}}</div>
+                  <td v-if="!law.is_signed"><div v-if="law.already_voted == 0" @click="law.abs++, law.already_voted = 3" class="button is-light">{{law.abs}}</div>
                     <div v-else-if="law.already_voted == 3" @click="law.abs--, law.already_voted = 0" class="button is-white">{{law.abs}}</div>
                     <div v-else class="button is-light">{{law.abs}}</div></td>
-                  <td><div v-if="law.in_active && law.is_signed" class="button is-sucess">Active</div>
-                    <div v-else-if="!law.in_active && !law.is_signed"  class="button is-warning">Pending Vote</div>
+                  <td v-if="!law.is_signed"><div v-if="!law.in_active && !law.is_signed"  class="button is-warning">Pending Vote</div>
                     <div v-else class="button is-info">Pending Presidential Aproval</div></td>
                 </tr>
               </table>
+              <div class="button is-primary">Confirm Votes</div>
             </div>
             <!-- CREADOR DE LEYES -->
             <form class="box">
@@ -154,21 +155,45 @@
               <br>
               <br>
               <div class="control">
-                <textarea class="textarea has-fixed-size" placeholder="Law Structure and descripcion"></textarea>
+                <textarea class="textarea" placeholder="Law Structure and descripcion"></textarea>
               </div>
               <br>
   
               <button @click="createLaw()" class="button is-primary">Publish Law</button>
             </form>
           </div>
-          <div v-else class="box">
-            <h1 class="subtitle">This page is only for senators</h1>
+          <!-- ACTIVE LAWS -->
+          
+          <div class="box">
+            <h1 class="subtitle">Active laws</h1>
+            <table class="table">
+              <tr>
+                <th>Law Name</th>
+                <th>Law Type</th>
+                <th>Proposed by</th>
+                <th>Read</th>
+                <th v-if="is_senator">Propose revocation</th>
+              </tr>
+              <tr v-for="law in laws.result" >
+                <td v-if="law.in_active && law.is_signed">{{law.title}}</td>
+                <td v-if="law.in_active && law.is_signed">{{law.type}}</td>
+                <td v-if="law.in_active && law.is_signed">{{law.proposed_by}}</td>
+                <td v-if="law.in_active && law.is_signed"><div class="button is-info" @click="reading_law_title = law.title, reading_law_type = law.type, reading_law_desc = law.desc, page = 'Law Reader'">Read</div></td>
+                <td v-if="law.in_active && law.is_signed && is_senator"><div class="button is-danger">Revoke</div></td>
+              </tr>
+            </table>
           </div>
-
-
         </div>
         <div v-if="page == 'Executive Power'">
           <p>DEBUG: Executive Power</p>
+        </div>
+        <div v-if="page == 'Law Reader'">
+          <div class="box">
+            <div class="box"><div class="subtitle">{{reading_law_title}}</div>{{reading_law_type}}</div>
+            <div class="box">{{reading_law_desc}}</div>
+            <br>
+            <div class="button is-info" @click="page='Senate Voting'">Go Back</div>
+          </div>
         </div>
       </main>
       <br>
@@ -194,10 +219,10 @@
         </div>
       </div>
     </div>
-    <div
+    <!-- <div
       class="box"
       id="SenateParties"
       style="max-width: 700px; height: 400px"
-    ></div>
+    ></div> -->
   </body>
 </html>
