@@ -8,6 +8,7 @@ createApp({
       debug_mode: true,
       count: 0,
       page: "Home",
+      user_full_name: "John Doe",
       is_senator: false,
       is_president: false,
       is_member_of_cabinet: false,
@@ -42,11 +43,10 @@ createApp({
     }
   },
   methods: {
-    vote() {
-      this.already_voted = true
-    },
-    createLaw(law_title, law_desc, law_type, law_proposed_by) {
-      laws.result[laws.result.length] = { title: law_title, desc: law_desc, type: law_type, proposed_by: law_proposed_by, for: 0, against: 0, abs: 0, in_active: false, is_signed: false, already_voted: 0 }
+    createLaw(law_title, law_desc, law_type) {
+      laws_copy = this.laws,
+      laws_copy.result[laws_copy.result.length] = { title: law_title, desc: law_desc, type: law_type, proposed_by: this.user_full_name, for: 0, against: 0, abs: 0, in_active: false, is_signed: false, already_voted: 0 },
+      this.laws = laws_copy
     }
   },
 }).mount('#app')
