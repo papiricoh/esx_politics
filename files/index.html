@@ -28,7 +28,7 @@
           <button class="button is-text" @click="page = 'Election'">
             Election
           </button>
-          <button class="button is-text" @click="page = 'Senate Voting'">
+          <button class="button is-text" @click="page = 'Senate Voting', create_law_type_error = false">
             Senate Voting
           </button>
           <button class="button is-text" @click="page = 'Executive Power'"
@@ -155,7 +155,8 @@
               </div>
               <br>
 
-              <div @click="createLaw(form_law_title, form_law_desc, form_law_type)" class="button is-primary">Publish Law</div>
+              <div v-if="!create_law_type_error" @click="createLaw(form_law_title, form_law_desc, form_law_type)" class="button is-primary">Publish Law</div>
+              <div v-else @click="createLaw(form_law_title, form_law_desc, form_law_type)" class="button is-danger">No Law Type Selected</div>
             </form>
           </div>
           <!-- ACTIVE LAWS -->

@@ -38,15 +38,23 @@ createApp({
       // Law Reading
       reading_law_title: "LAW_TITLE",
       reading_law_type: "LAW_TYPE",
-      reading_law_desc: "LAW_DESC"
+      reading_law_desc: "LAW_DESC",
+
+      // Error
+      create_law_type_error: false
 
     }
   },
   methods: {
     createLaw(law_title, law_desc, law_type) {
-      laws_copy = this.laws,
-        laws_copy.result[laws_copy.result.length] = { title: law_title, desc: law_desc, type: law_type, proposed_by: this.user_full_name, for: 0, against: 0, abs: 0, in_active: false, is_signed: false, already_voted: 0 },
-        this.laws = laws_copy
+      if (law_type != null) {
+        laws_copy = this.laws,
+          laws_copy.result[laws_copy.result.length] = { title: law_title, desc: law_desc, type: law_type, proposed_by: this.user_full_name, for: 0, against: 0, abs: 0, in_active: false, is_signed: false, already_voted: 0 },
+          this.laws = laws_copy
+      } else {
+        this.create_law_type_error = true
+      }
+
     },
     prueba() {
       console.log("holaaaaa");
