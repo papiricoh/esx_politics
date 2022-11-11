@@ -135,31 +135,31 @@
               <div class="field">
                 <label class="label">New Law</label>
                 <div class="control">
-                  <input
+                  <input id="form_law_title"
                     class="input is-rounded"
-                    type="law_title"
+                    type="text"
                     placeholder="5th Amendment"
                   />
                 </div>
               </div>
               <div class="select is-info">
-                <select>
-                  <option>Select Law Type</option>
-                  <option>Amendment</option>
-                  <option>Bill</option>
-                  <option>National Law</option>
-                  <option>Regional Law</option>
-                  <option>District Law</option>
+                <select id="law_type" name="law_type">
+                  <option value="null">Select Law Type</option>
+                  <option value="Amendment">Amendment</option>
+                  <option value="Bill">Bill</option>
+                  <option value="National Law">National Law</option>
+                  <option value="Regional Law">Regional Law</option>
+                  <option value="District Law">District Law</option>
                 </select>
               </div>
               <br>
               <br>
               <div class="control">
-                <textarea class="textarea" placeholder="Law Structure and descripcion"></textarea>
+                <textarea id="form_law_desc" type="text" class="textarea" placeholder="Law Structure and descripcion"></textarea>
               </div>
               <br>
-  
-              <button @click="createLaw()" class="button is-primary">Publish Law</button>
+
+              <submit @click="createLaw(form_law_title, law_type, form_law_desc)" class="button is-primary">Publish Law</submit>
             </form>
           </div>
           <!-- ACTIVE LAWS -->
