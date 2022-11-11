@@ -25,15 +25,9 @@
         <div>
           <button class="button is-text" @click="page = 'Home'">Home</button>
           <button class="button is-text" @click="page = 'Seats'">Seats</button>
-          <button class="button is-text" @click="page = 'Election'">
-            Election
-          </button>
-          <button class="button is-text" @click="page = 'Senate Voting', create_law_type_error = false">
-            Senate Voting
-          </button>
-          <button class="button is-text" @click="page = 'Executive Power'"
-            >Executive Power</button
-          >
+          <button class="button is-text" @click="page = 'Election'">Election</button>
+          <button class="button is-text" @click="page = 'Senate Voting', create_law_type_error = false">Senate Voting</button>
+          <button class="button is-text" @click="page = 'Executive Power'">Executive Power</button>
         </div>
         <div v-if="page == 'Home'">
           <div class="box">
