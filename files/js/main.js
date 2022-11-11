@@ -45,8 +45,8 @@ createApp({
   methods: {
     createLaw(law_title, law_desc, law_type) {
       laws_copy = this.laws,
-      laws_copy.result[laws_copy.result.length] = { title: law_title, desc: law_desc, type: law_type, proposed_by: this.user_full_name, for: 0, against: 0, abs: 0, in_active: false, is_signed: false, already_voted: 0 },
-      this.laws = laws_copy
+        laws_copy.result[laws_copy.result.length] = { title: law_title, desc: law_desc, type: law_type, proposed_by: this.user_full_name, for: 0, against: 0, abs: 0, in_active: false, is_signed: false, already_voted: 0 },
+        this.laws = laws_copy
     }
   },
 }).mount('#app')
