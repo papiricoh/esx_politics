@@ -135,15 +135,11 @@
               <div class="field">
                 <label class="label">New Law</label>
                 <div class="control">
-                  <input id="form_law_title"
-                    class="input is-rounded"
-                    type="text"
-                    placeholder="5th Amendment"
-                  />
+                  <input id="form_law_title" class="input is-rounded" type="text" placeholder="5th Amendment" v-model="form_law_title"/>
                 </div>
               </div>
               <div class="select is-info">
-                <select id="law_type" name="law_type">
+                <select id="form_law_type" name="form_law_type" v-model="form_law_type">
                   <option value="null">Select Law Type</option>
                   <option value="Amendment">Amendment</option>
                   <option value="Bill">Bill</option>
@@ -155,11 +151,11 @@
               <br>
               <br>
               <div class="control">
-                <textarea id="form_law_desc" type="text" class="textarea" placeholder="Law Structure and descripcion"></textarea>
+                <textarea id="form_law_desc" type="text" class="textarea" placeholder="Law Structure and descripcion" v-model="form_law_desc"></textarea>
               </div>
               <br>
 
-              <submit @click="createLaw(form_law_title, law_type, form_law_desc)" class="button is-primary">Publish Law</submit>
+              <div @click="createLaw(form_law_title, form_law_desc, form_law_type)" class="button is-primary">Publish Law</div>
             </form>
           </div>
           <!-- ACTIVE LAWS -->
