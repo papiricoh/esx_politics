@@ -171,7 +171,7 @@
                 <td v-if="law.in_active && law.is_signed">{{law.type}}</td>
                 <td v-if="law.in_active && law.is_signed">{{law.proposed_by}}</td>
                 <td v-if="law.in_active && law.is_signed"><div class="button is-info" @click="reading_law_title = law.title, reading_law_type = law.type, reading_law_desc = law.desc, page = 'Law Reader'">Read</div></td>
-                <td v-if="law.in_active && law.is_signed && is_senator"><div class="button is-danger">Revoke</div></td>
+                <td v-if="law.in_active && law.is_signed && is_senator"><div class="button is-danger" @click="revocateLaw(law.title, law.desc)">Revoke</div></td>
               </tr>
             </table>
           </div>

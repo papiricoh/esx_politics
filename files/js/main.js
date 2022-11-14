@@ -56,6 +56,12 @@ createApp({
       }
 
     },
+    revocateLaw(law_title, law_desc) {
+      laws_copy = this.laws,
+        laws_copy.result[laws_copy.result.length] = { title: 'Revocation of ' + law_title, desc: law_desc, type: 'Revocation', proposed_by: this.user_full_name, for: 0, against: 0, abs: 0, in_active: false, is_signed: false, already_voted: 0 },
+        this.laws = laws_copy
+
+    },
     prueba() {
       console.log("holaaaaa");
     }
