@@ -17,6 +17,18 @@ h1 {
   margin-right: auto;
 }
 
+.party_data {
+  display: grid;
+  grid-template-columns: 220px auto;
+  gap: 10px;
+}
+
+.menu {
+  text-align: left;
+  grid-row-start: 1;
+  grid-row-end: 1;
+}
+
 #law_creator {
   text-align: justify;
 }
@@ -40,5 +52,6 @@ h1 {
 
 #main_header {
   background-image: url('../img/town_hall.png');
-  border-radius: 12px;
+  border-style: inset;
+  border-bottom-right-radius: 445px 125px;
 }

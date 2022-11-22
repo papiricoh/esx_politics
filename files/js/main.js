@@ -51,9 +51,16 @@ createApp({
       },
       parties: {
         result: [
-          { name: "United Wing Party", members: ["Jose", "Manuel"] }
+          { name: "United Wing Party", ideology: "Conservative", desc: "The united wing party", members: ["Jose", "Manuel"] }
         ]
-      }
+      },
+      active_party_page: 0,
+
+      // Party pages
+      page_party_name: "",
+      page_party_ideology: "",
+      page_party_members: "",
+      page_party_desc: ""
 
     }
   },
