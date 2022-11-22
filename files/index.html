@@ -95,17 +95,22 @@
                 </aside>
               </div>
               <div class="box">
-                <div class="box">
-                  <h2 class="subtitle">{{page_party_name}}</h2>
-                  <p>{{page_party_ideology}}</p>
+                <div v-if="active_party_page != -1">
+                  <div class="box">
+                    <h2 class="subtitle">{{page_party_name}}</h2>
+                    <p>{{page_party_ideology}}</p>
+                  </div>
+                  <div class="middle_grid">
+                    <div class="box">
+                      <p>{{page_party_members}}</p>
+                    </div>
+                    <div class="box">
+                      <p>{{page_party_desc}}</p>
+                    </div>
+                  </div>
                 </div>
-                <div class="middle_grid">
-                  <div class="box">
-                    <p>{{page_party_members}}</p>
-                  </div>
-                  <div class="box">
-                    <p>{{page_party_desc}}</p>
-                  </div>
+                <div v-else>
+                  <!--  ADD GRAPH OF SENATE  -->
                 </div>
               </div>
             </div>
