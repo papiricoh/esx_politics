@@ -23,8 +23,9 @@
   </head>
   <body>
     <div id="app">
-      <div class="section" id="main_header">
-        <h1 class="title">Los Santos Senate</h1>
+      <div class="section middle_grid" id="main_header">
+        <img class="logo" src="https://static.wikia.nocookie.net/gtawiki/images/2/21/Lossantos_seal.png" alt="Los Santos">
+        <h1 class="title" id="main_title">Los Santos Senate</h1>
       </div>
       <main>
         <div class="tabs is-centered is-boxed">
@@ -39,6 +40,8 @@
             <li v-else ><a @click="page = 'Senate Voting', create_law_type_error = false"><span class="icon is-small"><i class="fas fa-landmark-flag" aria-hidden="true"></i></span>Senate Voting</a></li>
             <li v-if="page == 'Executive Power'" class="is-active"><a @click="page = 'Executive Power'"><span class="icon is-small"><i class="fas fa-briefcase" aria-hidden="true"></i></span>Executive Power</a></li>
             <li v-else ><a @click="page = 'Executive Power'"><span class="icon is-small"><i class="fas fa-briefcase" aria-hidden="true"></i></span>Executive Power</a></li>
+            <li v-if="page == 'Admin' && debug_mode" class="is-active"><a @click="page = 'Admin'"><span class="icon is-small"><i class="fa-solid fa-hammer"></i></span>Admin Menu</a></li>
+            <li v-if="page != 'Admin' && debug_mode" ><a @click="page = 'Admin'"><span class="icon is-small"><i class="fa-solid fa-hammer"></i></span>Admin Menu</a></li>
           </ul>
         </div>
         <div v-if="page == 'Home'">
@@ -263,34 +266,34 @@
             <div class="button is-info" @click="page='Senate Voting'">Go Back</div>
           </div>
         </div>
-      </main>
-      <br>
-      <div class="menu">
-        <div v-if="debug_mode" class="tile is-ancestor">
-          <div class="tile is-4 is-vertical is-parent">
-            <div class="tile is-child box">
-              <h1 class="subtitle">Debug Menu:</h1> 
-              <button v-if="!is_election_day" class="button is-danger" @click="is_election_day = !is_election_day">Not Election Day</button>
-              <button v-else class="button is-success" @click="is_election_day = !is_election_day">Election Day</button>
-              <br>
-              <br>
-              <button v-if="!is_senator" class="button is-danger" @click="is_senator = !is_senator">Not Senator</button>
-              <button v-else class="button is-success" @click="is_senator = !is_senator">Senator</button>
-              <br>
-              <br>
-              <button v-if="!is_president" class="button is-danger" @click="is_president = !is_president">Not President</button>
-              <button v-else class="button is-success" @click="is_president = !is_president">President</button>
-              <br>
-              <br>
-              <button v-if="!is_member_of_cabinet" class="button is-danger" @click="is_member_of_cabinet = !is_member_of_cabinet">Not Member of Cabinet</button>
-              <button v-else class="button is-success" @click="is_member_of_cabinet = !is_member_of_cabinet">Member of Cabinet</button>
-              <br>
-              <br>
-              <button class="button is-info" @click="createLaw('dbhawiudwa', 'daduwaniud', 'dhuaiuawoidwai')">Create Example Law</button>
+        <div v-if="page == 'Admin'" class="menu">
+          <div v-if="debug_mode" class="tile is-ancestor">
+            <div class="tile is-4 is-vertical is-parent">
+              <div class="tile is-child box">
+                <h1 class="subtitle">Debug Menu:</h1> 
+                <button v-if="!is_election_day" class="button is-danger" @click="is_election_day = !is_election_day">Not Election Day</button>
+                <button v-else class="button is-success" @click="is_election_day = !is_election_day">Election Day</button>
+                <br>
+                <br>
+                <button v-if="!is_senator" class="button is-danger" @click="is_senator = !is_senator">Not Senator</button>
+                <button v-else class="button is-success" @click="is_senator = !is_senator">Senator</button>
+                <br>
+                <br>
+                <button v-if="!is_president" class="button is-danger" @click="is_president = !is_president">Not President</button>
+                <button v-else class="button is-success" @click="is_president = !is_president">President</button>
+                <br>
+                <br>
+                <button v-if="!is_member_of_cabinet" class="button is-danger" @click="is_member_of_cabinet = !is_member_of_cabinet">Not Member of Cabinet</button>
+                <button v-else class="button is-success" @click="is_member_of_cabinet = !is_member_of_cabinet">Member of Cabinet</button>
+                <br>
+                <br>
+                <button class="button is-info" @click="createLaw('dbhawiudwa', 'daduwaniud', 'dhuaiuawoidwai')">Create Example Law</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </main>
+      <br>
     </div>
     <!-- <div
       class="box"

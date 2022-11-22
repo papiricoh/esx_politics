@@ -78,10 +78,22 @@ createApp({
 
     },
     revocateLaw(law_title, law_desc) {
-      laws_copy = this.laws,
-        laws_copy.result[laws_copy.result.length] = { title: 'Revocation of ' + law_title, desc: law_desc, type: 'Revocation', proposed_by: this.user_full_name, for: 0, against: 0, abs: 0, in_active: false, is_signed: false, already_voted: 0 },
-        this.laws = laws_copy
+      if (!this.checkRevocation(law_title)) {
+        laws_copy = this.laws,
+          laws_copy.result[laws_copy.result.length] = { title: 'Revocation of ' + law_title, desc: law_desc, type: 'Revocation', proposed_by: this.user_full_name, for: 0, against: 0, abs: 0, in_active: false, is_signed: false, already_voted: 0 },
+          this.laws = laws_copy
+      }
+    },
+    checkRevocation(law_title) {
+      var posible = false;
+      this.laws.result.forEach(i => {
 
+        if (i.title == 'Revocation of ' + law_title) {
+          console.log(i.title + " Already exists")
+          posible = true;
+        }
+      })
+      return posible; //REVOCATION POSIBLE
     },
     generatePartyPage(index) {
       this.page_party_name = this.parties.result[index].name,

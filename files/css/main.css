@@ -36,9 +36,27 @@ h1 {
 
 }
 
+.center_grid {
+  display: grid;
+  grid-template-columns: 50% auto;
+  gap: 10px;
+
+}
 .padding_centered {
   padding-left: 200px;
   padding-right: 200px;
+}
+
+.logo {
+  padding-bottom: 0px;
+  width: 140px;
+}
+
+#main_title {
+  font-weight: bold;
+  color: black;
+  font-size: 100px;
+  padding-right: 270px;
 }
 
 #law_creator {
