@@ -82,16 +82,15 @@
                     Main View
                   </p>
                   <ul class="menu-list">
-                    <li><a>Seats View</a></li>
+                    <li v-if="active_party_page == -1"><a class="is-active">Seats View</a></li>
+                    <li v-else @click="active_party_page = -1"><a>Seats View</a></li>
                   </ul>
                   <p class="menu-label">
                     Political Parties
                   </p>
-                  <ul class="menu-list">
-                    <li><a>Party</a></li>
-                    <li><a class="is-active">Party</a></li>
-                    <li><a>Party</a></li>
-                    <li><a>Party</a></li>
+                  <ul v-for="(party, i) in parties.result" class="menu-list">
+                    <li v-if="active_party_page == i"><a class="is-active">{{party.name}}</a></li>
+                    <li v-else @click="active_party_page = i"><a>{{party.name}}</a></li>
                   </ul>
                 </aside>
               </div>

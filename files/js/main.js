@@ -51,10 +51,11 @@ createApp({
       },
       parties: {
         result: [
-          { name: "United Wing Party", ideology: "Conservative", desc: "The united wing party", members: ["Jose", "Manuel"] }
+          { name: "United Wing Party", ideology: "Conservative", desc: "The united wing party", members: ["Jose", "Manuel"] },
+          { name: "Workers Union Party", ideology: "Woke", desc: "The united workers party", members: ["Juan", "Jenaro"] }
         ]
       },
-      active_party_page: 0,
+      active_party_page: -1,
 
       // Party pages
       page_party_name: "",
