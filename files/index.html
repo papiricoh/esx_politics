@@ -29,7 +29,7 @@
       <main>
         <div class="tabs is-centered is-boxed">
           <ul>
-            <li v-if="page == 'Home'" class="is-active"><a @click="page = 'Home'"><span class="icon is-small"><i class="fas fa-house" aria-hidden="true"></i></span>Home</a></li>
+            <li @click="prueba()" v-if="page == 'Home'" class="is-active"><a @click="page = 'Home'"><span class="icon is-small"><i class="fas fa-house" aria-hidden="true"></i></span>Home</a></li>
             <li v-else ><a @click="page = 'Home'"><span class="icon is-small"><i class="fas fa-house" aria-hidden="true"></i></span>Home</a></li>
             <li v-if="page == 'Seats'" class="is-active"><a @click="page = 'Seats'"><span class="icon is-small"><i class="fas fa-chair" aria-hidden="true"></i></span>Seats</a></li>
             <li v-else ><a @click="page = 'Seats'"><span class="icon is-small"><i class="fas fa-chair" aria-hidden="true"></i></span>Seats</a></li>
@@ -90,15 +90,25 @@
                   </p>
                   <ul v-for="(party, i) in parties.result" class="menu-list">
                     <li v-if="active_party_page == i"><a class="is-active">{{party.name}}</a></li>
-                    <li v-else @click="active_party_page = i"><a>{{party.name}}</a></li>
+                    <li v-else @click="active_party_page = i, generatePartyPage(i)"><a>{{party.name}}</a></li>
                   </ul>
                 </aside>
               </div>
               <div class="box">
-                <h2 class="subtitle"></h2>
+                <div class="box">
+                  <h2 class="subtitle">{{page_party_name}}</h2>
+                  <p>{{page_party_ideology}}</p>
+                </div>
+                <div class="middle_grid">
+                  <div class="box">
+                    <p>{{page_party_members}}</p>
+                  </div>
+                  <div class="box">
+                    <p>{{page_party_desc}}</p>
+                  </div>
+                </div>
               </div>
             </div>
-            <p class="justified">I'm in a box.</p>
           </div>
         </div>
         <div v-if="page == 'Election'">

@@ -51,8 +51,9 @@ createApp({
       },
       parties: {
         result: [
-          { name: "United Wing Party", ideology: "Conservative", desc: "The united wing party", members: ["Jose", "Manuel"] },
-          { name: "Workers Union Party", ideology: "Woke", desc: "The united workers party", members: ["Juan", "Jenaro"] }
+          { name: "United Wing Party", ideology: "Conservative", desc: "The united wing party", members: ["Jose Jimenez", "Manuel Turizo"] },
+          { name: "Workers Union Party", ideology: "Woke", desc: "The united workers party", members: ["Juan Guaizo", "Jenaro Lopez"] },
+          { name: "Puerto Rico Liberation Movement", ideology: "Anarco-Capitalist", desc: "The Puerto Rican Liberation Movement", members: ["Benito Perez", "Maluma Beibi", "Bryant Myers"] }
         ]
       },
       active_party_page: -1,
@@ -82,8 +83,18 @@ createApp({
         this.laws = laws_copy
 
     },
+    generatePartyPage(index) {
+      this.page_party_name = this.parties.result[index].name,
+        this.page_party_ideology = this.parties.result[index].ideology,
+        this.page_party_desc = this.parties.result[index].desc,
+        this.page_party_members = "",
+        this.parties.result[index].members.forEach(i => {
+          this.page_party_members = this.page_party_members + i + ",\n";
+        })
+      this.page_party_members = this.page_party_members.substring(0, this.page_party_members.length - 2);
+    },
     prueba() {
-      console.log("holaaaaa");
+      console.log(this.parties.result[0].members[0]);
     }
   },
 }).mount('#app')

@@ -29,6 +29,13 @@ h1 {
   grid-row-end: 1;
 }
 
+.middle_grid {
+  display: grid;
+  grid-template-columns: 220px auto;
+  gap: 10px;
+
+}
+
 #law_creator {
   text-align: justify;
 }
