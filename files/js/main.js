@@ -41,7 +41,19 @@ createApp({
       reading_law_desc: "LAW_DESC",
 
       // Error
-      create_law_type_error: false
+      create_law_type_error: false,
+
+      // Parties and senators
+      ideologies: {
+        result: [
+          { left: 12, center: 3, right: 32 }
+        ]
+      },
+      parties: {
+        result: [
+          { name: "United Wing Party", members: ["Jose", "Manuel"] }
+        ]
+      }
 
     }
   },

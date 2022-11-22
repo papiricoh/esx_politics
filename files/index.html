@@ -16,22 +16,34 @@
     <script defer src="./js/main.js"></script>
     <script defer src="https://www.gstatic.com/charts/loader.js"></script>
     <script defer src="./js/chart_main.js"></script>
+    <!-- FONT ASEWOME -->
+    <script defer src="./node_modules/@fortawesome/fontawesome-free/js/brands.js"></script>
+    <script defer src="./node_modules/@fortawesome/fontawesome-free/js/solid.js"></script>
+    <script defer src="./node_modules/@fortawesome/fontawesome-free/js/fontawesome.js"></script>
   </head>
   <body>
-    <div class="block" id="app">
-      <h1 class="title">Los Santos Senate</h1>
-      <hr />
+    <div id="app">
+      <div class="section" id="main_header">
+        <h1 class="title">Los Santos Senate</h1>
+      </div>
       <main>
-        <div>
-          <button class="button is-text" @click="page = 'Home'">Home</button>
-          <button class="button is-text" @click="page = 'Seats'">Seats</button>
-          <button class="button is-text" @click="page = 'Election'">Election</button>
-          <button class="button is-text" @click="page = 'Senate Voting', create_law_type_error = false">Senate Voting</button>
-          <button class="button is-text" @click="page = 'Executive Power'">Executive Power</button>
+        <div class="tabs is-centered is-boxed">
+          <ul>
+            <li v-if="page == 'Home'" class="is-active"><a @click="page = 'Home'"><span class="icon is-small"><i class="fas fa-house" aria-hidden="true"></i></span>Home</a></li>
+            <li v-else ><a @click="page = 'Home'"><span class="icon is-small"><i class="fas fa-house" aria-hidden="true"></i></span>Home</a></li>
+            <li v-if="page == 'Seats'" class="is-active"><a @click="page = 'Seats'"><span class="icon is-small"><i class="fas fa-chair" aria-hidden="true"></i></span>Seats</a></li>
+            <li v-else ><a @click="page = 'Seats'"><span class="icon is-small"><i class="fas fa-chair" aria-hidden="true"></i></span>Seats</a></li>
+            <li v-if="page == 'Election'" class="is-active"><a @click="page = 'Election'"><span class="icon is-small"><i class="fas fa-check-to-slot" aria-hidden="true"></i></span>Election</a></li>
+            <li v-else ><a @click="page = 'Election'"><span class="icon is-small"><i class="fas fa-check-to-slot" aria-hidden="true"></i></span>Election</a></li>
+            <li v-if="page == 'Senate Voting'" class="is-active"><a @click="page = 'Senate Voting', create_law_type_error = false"><span class="icon is-small"><i class="fas fa-landmark-flag" aria-hidden="true"></i></span>Senate Voting</a></li>
+            <li v-else ><a @click="page = 'Senate Voting', create_law_type_error = false"><span class="icon is-small"><i class="fas fa-landmark-flag" aria-hidden="true"></i></span>Senate Voting</a></li>
+            <li v-if="page == 'Executive Power'" class="is-active"><a @click="page = 'Executive Power'"><span class="icon is-small"><i class="fas fa-briefcase" aria-hidden="true"></i></span>Executive Power</a></li>
+            <li v-else ><a @click="page = 'Executive Power'"><span class="icon is-small"><i class="fas fa-briefcase" aria-hidden="true"></i></span>Executive Power</a></li>
+          </ul>
         </div>
         <div v-if="page == 'Home'">
           <div class="box">
-            <p>
+            <p class="justified">
               Welcome to the Los Santos Senate Web, here you can vote in an
               Election for the seats on the senate, president and referendums,
               also if you are already a member of the senate or the executive you
@@ -40,8 +52,29 @@
           </div>
         </div>
         <div v-if="page == 'Seats'">
-          <p>DEBUG: Seats</p>
-          <div class="box">I'm in a box.</div>
+          <div class="box">
+            <nav class="level is-mobile">
+              <div class="level-item has-text-centered">
+                <div>
+                  <p class="heading">Left Senators</p>
+                  <p class="title" id="left_senators">{{ideologies.result[0].left}}</p>
+                </div>
+              </div>
+              <div class="level-item has-text-centered">
+                <div>
+                  <p class="heading">Center Senators</p>
+                  <p class="title" id="center_senators">{{ideologies.result[0].center}}</p>
+                </div>
+              </div>
+              <div class="level-item has-text-centered">
+                <div>
+                  <p class="heading">Right Senators</p>
+                  <p class="title" id="right_senators">{{ideologies.result[0].right}}</p>
+                </div>
+              </div>
+            </nav>
+            <p class="justified">I'm in a box.</p>
+          </div>
         </div>
         <div v-if="page == 'Election'">
           <div v-if="is_election_day" class="box"> <!-- SI ES DIA DE ELECCIONES -->
@@ -126,7 +159,7 @@
               <div class="button is-primary">Confirm Votes</div>
             </div>
             <!-- CREADOR DE LEYES -->
-            <form class="box">
+            <form class="box" id="law_creator">
               <div class="field">
                 <label class="label">New Law</label>
                 <div class="control">
@@ -135,7 +168,7 @@
               </div>
               <div class="select is-info">
                 <select id="form_law_type" name="form_law_type" v-model="form_law_type">
-                  <option value="null">Select Law Type</option>
+                  <option value="null" selected>Select Law Type</option>
                   <option value="Amendment">Amendment</option>
                   <option value="Bill">Bill</option>
                   <option value="National Law">National Law</option>
@@ -183,34 +216,36 @@
           <div class="box">
             <div class="box">
               <div class="subtitle">{{reading_law_title}}</div>{{reading_law_type}}</div>
-            <div class="box">{{reading_law_desc}}</div>
+            <div class="box" id="law_desc"><p>{{reading_law_desc}}</p></div>
             <br>
             <div class="button is-info" @click="page='Senate Voting'">Go Back</div>
           </div>
         </div>
       </main>
       <br>
-      <div v-if="debug_mode" class="tile is-ancestor">
-        <div class="tile is-4 is-vertical is-parent">
-          <div class="tile is-child box">
-            <h1 class="subtitle">Debug Menu:</h1> 
-            <button v-if="!is_election_day" class="button is-danger" @click="is_election_day = !is_election_day">Not Election Day</button>
-            <button v-else class="button is-success" @click="is_election_day = !is_election_day">Election Day</button>
-            <br>
-            <br>
-            <button v-if="!is_senator" class="button is-danger" @click="is_senator = !is_senator">Not Senator</button>
-            <button v-else class="button is-success" @click="is_senator = !is_senator">Senator</button>
-            <br>
-            <br>
-            <button v-if="!is_president" class="button is-danger" @click="is_president = !is_president">Not President</button>
-            <button v-else class="button is-success" @click="is_president = !is_president">President</button>
-            <br>
-            <br>
-            <button v-if="!is_member_of_cabinet" class="button is-danger" @click="is_member_of_cabinet = !is_member_of_cabinet">Not Member of Cabinet</button>
-            <button v-else class="button is-success" @click="is_member_of_cabinet = !is_member_of_cabinet">Member of Cabinet</button>
-            <br>
-            <br>
-            <button class="button is-info" @click="createLaw('dbhawiudwa', 'daduwaniud', 'dhuaiuawoidwai')">Create Example Law</button>
+      <div class="menu">
+        <div v-if="debug_mode" class="tile is-ancestor">
+          <div class="tile is-4 is-vertical is-parent">
+            <div class="tile is-child box">
+              <h1 class="subtitle">Debug Menu:</h1> 
+              <button v-if="!is_election_day" class="button is-danger" @click="is_election_day = !is_election_day">Not Election Day</button>
+              <button v-else class="button is-success" @click="is_election_day = !is_election_day">Election Day</button>
+              <br>
+              <br>
+              <button v-if="!is_senator" class="button is-danger" @click="is_senator = !is_senator">Not Senator</button>
+              <button v-else class="button is-success" @click="is_senator = !is_senator">Senator</button>
+              <br>
+              <br>
+              <button v-if="!is_president" class="button is-danger" @click="is_president = !is_president">Not President</button>
+              <button v-else class="button is-success" @click="is_president = !is_president">President</button>
+              <br>
+              <br>
+              <button v-if="!is_member_of_cabinet" class="button is-danger" @click="is_member_of_cabinet = !is_member_of_cabinet">Not Member of Cabinet</button>
+              <button v-else class="button is-success" @click="is_member_of_cabinet = !is_member_of_cabinet">Member of Cabinet</button>
+              <br>
+              <br>
+              <button class="button is-info" @click="createLaw('dbhawiudwa', 'daduwaniud', 'dhuaiuawoidwai')">Create Example Law</button>
+            </div>
           </div>
         </div>
       </div>
