@@ -93,6 +93,9 @@ createApp({
         })
       this.page_party_members = this.page_party_members.substring(0, this.page_party_members.length - 2);
     },
+    generateFullName(firstName, lastName) {
+      this.user_full_name = firstName + " " + lastName;
+    },
     prueba() {
       console.log(this.parties.result[0].members[0]);
     }

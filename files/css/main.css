@@ -36,6 +36,11 @@ h1 {
 
 }
 
+.padding_centered {
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
 #law_creator {
   text-align: justify;
 }

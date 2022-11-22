@@ -199,7 +199,7 @@
               <div class="button is-primary">Confirm Votes</div>
             </div>
             <!-- CREADOR DE LEYES -->
-            <form class="box" id="law_creator">
+            <form class="box padding_centered" id="law_creator">
               <div class="field">
                 <label class="label">New Law</label>
                 <div class="control">
@@ -254,9 +254,11 @@
         </div>
         <div v-if="page == 'Law Reader'">
           <div class="box">
-            <div class="box">
+            <div class="padding_centered">
+              <div class="box">
               <div class="subtitle">{{reading_law_title}}</div>{{reading_law_type}}</div>
-            <div class="box" id="law_desc"><p>{{reading_law_desc}}</p></div>
+              <div class="box" id="law_desc"><p>{{reading_law_desc}}</p></div>
+            </div>
             <br>
             <div class="button is-info" @click="page='Senate Voting'">Go Back</div>
           </div>
