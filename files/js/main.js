@@ -1,8 +1,8 @@
 // import { createApp } from 'vue'
 const { createApp } = Vue
+const { VueApexCharts } = "vue3-apexcharts";
 
-
-createApp({
+const app = createApp({
   data() {
     return {
       debug_mode: true,
@@ -112,4 +112,7 @@ createApp({
       console.log(this.parties.result[0].members[0]);
     }
   },
-}).mount('#app')
+})
+app.use(VueApexCharts);
+
+app.mount('#app')
