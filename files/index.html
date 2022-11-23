@@ -31,8 +31,8 @@
             <li v-else ><a @click="page = 'Seats'"><span class="icon is-small"><i class="fas fa-chair" aria-hidden="true"></i></span>Seats</a></li>
             <li v-if="page == 'Election'" class="is-active"><a @click="page = 'Election'"><span class="icon is-small"><i class="fas fa-check-to-slot" aria-hidden="true"></i></span>Election</a></li>
             <li v-else ><a @click="page = 'Election'"><span class="icon is-small"><i class="fas fa-check-to-slot" aria-hidden="true"></i></span>Election</a></li>
-            <li v-if="page == 'Senate Voting'" class="is-active"><a @click="page = 'Senate Voting', create_law_type_error = false"><span class="icon is-small"><i class="fas fa-landmark-flag" aria-hidden="true"></i></span>Senate Voting</a></li>
-            <li v-else ><a @click="page = 'Senate Voting', create_law_type_error = false"><span class="icon is-small"><i class="fas fa-landmark-flag" aria-hidden="true"></i></span>Senate Voting</a></li>
+            <li v-if="page == 'Senate Voting'" class="is-active"><a @click="page = 'Senate Voting', create_law_type_error = 'null'"><span class="icon is-small"><i class="fas fa-landmark-flag" aria-hidden="true"></i></span>Senate Voting</a></li>
+            <li v-else ><a @click="page = 'Senate Voting', create_law_type_error = 'null'"><span class="icon is-small"><i class="fas fa-landmark-flag" aria-hidden="true"></i></span>Senate Voting</a></li>
             <li v-if="page == 'Executive Power'" class="is-active"><a @click="page = 'Executive Power'"><span class="icon is-small"><i class="fas fa-briefcase" aria-hidden="true"></i></span>Executive Power</a></li>
             <li v-else ><a @click="page = 'Executive Power'"><span class="icon is-small"><i class="fas fa-briefcase" aria-hidden="true"></i></span>Executive Power</a></li>
             <li v-if="page == 'Admin' && debug_mode" class="is-active"><a @click="page = 'Admin'"><span class="icon is-small"><i class="fa-solid fa-hammer"></i></span>Admin Menu</a></li>
@@ -229,8 +229,9 @@
               </div>
               <br>
 
-              <div v-if="!create_law_type_error" @click="createLaw(form_law_title, form_law_desc, form_law_type)" class="button is-primary">Publish Law</div>
-              <div v-else @click="createLaw(form_law_title, form_law_desc, form_law_type)" class="button is-danger">No Law Type Selected</div>
+              <div v-if="create_law_type_error == 'null'" @click="createLaw(form_law_title, form_law_desc, form_law_type)" class="button is-primary">Publish Law</div>
+              <div v-if="create_law_type_error == 'no_type'" @click="createLaw(form_law_title, form_law_desc, form_law_type)" class="button is-danger">No Law Type Selected</div>
+              <div v-if="create_law_type_error == 'law_already_exists'" @click="createLaw(form_law_title, form_law_desc, form_law_type)" class="button is-danger">Law Already Exists</div>
             </form>
           </div>
           <!-- ACTIVE LAWS -->

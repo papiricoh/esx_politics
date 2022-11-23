@@ -58,7 +58,7 @@ const app = createApp({
       reading_law_desc: "LAW_DESC",
 
       // Error
-      create_law_type_error: false,
+      create_law_type_error: 'null',
 
       // Parties and senators
       ideologies: {
@@ -86,13 +86,28 @@ const app = createApp({
   methods: {
     createLaw(law_title, law_desc, law_type) {
       if (law_type != null) {
-        laws_copy = this.laws,
-          laws_copy.result[laws_copy.result.length] = { title: law_title, desc: law_desc, type: law_type, proposed_by: this.user_full_name, for: 0, against: 0, abs: 0, in_active: false, is_signed: false, already_voted: 0 },
-          this.laws = laws_copy
+        if (!this.checkCreation(law_title)) {
+          laws_copy = this.laws,
+            laws_copy.result[laws_copy.result.length] = { title: law_title, desc: law_desc, type: law_type, proposed_by: this.user_full_name, for: 0, against: 0, abs: 0, in_active: false, is_signed: false, already_voted: 0 },
+            this.laws = laws_copy
+        }
+        else {
+          this.create_law_type_error = 'law_already_exists'
+        }
       } else {
-        this.create_law_type_error = true
+        this.create_law_type_error = 'no_type'
       }
 
+    },
+    checkCreation(law_title) {
+      var posible = false;
+      this.laws.result.forEach(i => {
+        if (i.title == law_title) {
+          console.log(i.title + " Already exists")
+          posible = true;
+        }
+      })
+      return posible; //REVOCATION POSIBLE
     },
     revocateLaw(law_title, law_desc) {
       if (!this.checkRevocation(law_title)) {
