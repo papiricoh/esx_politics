@@ -1,7 +1,5 @@
 // import { createApp } from 'vue'
 const { createApp } = Vue;
-const { VueApexCharts } = 'vue3-apexcharts';
-const { ApexCharts } = 'apexcharts';
 
 const app = createApp({
   data() {
@@ -145,8 +143,6 @@ const app = createApp({
     }
   },
 })
-app.config.globalProperties.$apexcharts = ApexCharts;
-app.use(VueApexCharts);
 
 
 app.mount('#app')
