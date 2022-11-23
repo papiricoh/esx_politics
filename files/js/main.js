@@ -1,6 +1,7 @@
 // import { createApp } from 'vue'
 const { createApp } = Vue
-const { VueApexCharts } = "vue3-apexcharts";
+const { VueApexCharts } = 'vue3-apexcharts';
+const { ApexCharts } = 'apexcharts';
 
 const app = createApp({
   data() {
@@ -14,6 +15,22 @@ const app = createApp({
       is_member_of_cabinet: false,
       is_election_day: false,
       days_until_next_election: 12,
+      // CHART
+      chartOptions: {
+        chart: {
+          id: "vuechart-example",
+        },
+        xaxis: {
+          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+        },
+      },
+      series: [
+        {
+          name: "series-1",
+          data: [30, 40, 35, 50, 49, 60, 70, 91],
+        },
+      ],
+
       // Election Variables
       election: false,
       v_candidates: {
@@ -113,6 +130,8 @@ const app = createApp({
     }
   },
 })
+app.config.globalProperties.$apexcharts = ApexCharts;
 app.use(VueApexCharts);
+
 
 app.mount('#app')
