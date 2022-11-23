@@ -1,5 +1,5 @@
 // import { createApp } from 'vue'
-const { createApp } = Vue
+const { createApp } = Vue;
 const { VueApexCharts } = 'vue3-apexcharts';
 const { ApexCharts } = 'apexcharts';
 
