@@ -109,14 +109,10 @@
                 </div>
                 <div v-else>
                   <!--  ADD GRAPH OF SENATE  -->
-                  <div>
-                    <apexchart 
-                      width="500"
-                      type="bar"
-                      :options="chartOptions"
-                      :series="series"
-                    ></apexchart>
-                  </div>
+                  <p class="justified">
+                    In the senate there are a lot of parties 💎 <br>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam eos, dolores aut maiores nemo facilis cumque officia est quo temporibus ex doloremque asperiores, nihil consequuntur, atque eligendi fuga odio deleniti!
+                  </p>
                 </div>
               </div>
             </div>
@@ -238,22 +234,59 @@
           
           <div class="box">
             <h1 class="subtitle">Active laws</h1>
-            <table class="table">
-              <tr>
-                <th>Law Name</th>
-                <th>Law Type</th>
-                <th>Proposed by</th>
-                <th>Read</th>
-                <th v-if="is_senator">Propose revocation</th>
-              </tr>
-              <tr v-for="law in laws.result" >
-                <td v-if="law.in_active && law.is_signed">{{law.title}}</td>
-                <td v-if="law.in_active && law.is_signed">{{law.type}}</td>
-                <td v-if="law.in_active && law.is_signed">{{law.proposed_by}}</td>
-                <td v-if="law.in_active && law.is_signed"><div class="button is-info" @click="reading_law_title = law.title, reading_law_type = law.type, reading_law_desc = law.desc, page = 'Law Reader'">Read</div></td>
-                <td v-if="law.in_active && law.is_signed && is_senator"><div class="button is-danger" @click="revocateLaw(law.title, law.desc)">Revoke</div></td>
-              </tr>
-            </table>
+            <div class="middle_grid">
+              <div class="box">
+                <aside class="menu">
+                  <p class="menu-label">
+                    Constitutional Legislation <!-- Amendment -->
+                  </p>
+                  <ul class="menu-list">
+                    <li v-if="page_law_type == 'Constitution'"><a class="is-active">Constitution</a></li>
+                    <li v-else @click="page_law_type = 'Constitution'"><a>Constitution</a></li>
+                    <li v-if="page_law_type == 'Amendment'"><a class="is-active">Amendment</a></li>
+                    <li v-else @click="page_law_type = 'Amendment'"><a>Amendment</a></li>
+                  </ul>
+                  <p class="menu-label">
+                    State Legislation
+                  </p>
+                  <ul class="menu-list">
+                    <li v-if="page_law_type == 'Bill'"><a class="is-active">Bill</a></li>
+                    <li v-else @click="page_law_type = 'Bill'"><a>Bill</a></li>
+                    <li v-if="page_law_type == 'National Law'"><a class="is-active">National Law</a></li>
+                    <li v-else @click="page_law_type = 'National Law'"><a>National Law</a></li>
+                  </ul>
+                  <p class="menu-label">
+                    City Legislation
+                  </p>
+                  <ul class="menu-list">
+                    <li v-if="page_law_type == 'Regional Law'"><a class="is-active">Regional Law</a></li>
+                    <li v-else @click="page_law_type = 'Regional Law'"><a>Regional Law</a></li>
+                    <li v-if="page_law_type == 'District Law'"><a class="is-active">District Law</a></li>
+                    <li v-else @click="page_law_type = 'District Law'"><a>District Law</a></li>
+                  </ul>
+                </aside>
+              </div>
+              <div clas="box">
+                <table class="table">
+                  <tr>
+                    <th>Law Name</th>
+                    <th>Law Type</th>
+                    <th>Proposed by</th>
+                    <th>Read</th>
+                    <th v-if="is_senator">Propose revocation</th>
+                  </tr>
+                  <tr v-for="law in laws.result" >
+                    <td v-if="law.in_active && law.is_signed && page_law_type == law.type">{{law.title}}</td>
+                    <td v-if="law.in_active && law.is_signed && page_law_type == law.type">{{law.type}}</td>
+                    <td v-if="law.in_active && law.is_signed && page_law_type == law.type">{{law.proposed_by}}</td>
+                    <td v-if="law.in_active && law.is_signed && page_law_type == law.type"><div class="button is-info" @click="reading_law_title = law.title, reading_law_type = law.type, reading_law_desc = law.desc, page = 'Law Reader'">Read</div></td>
+                    <td v-if="law.in_active && law.is_signed && is_senator && page_law_type == law.type && law.type != 'Constitution'"><div class="button is-danger" @click="revocateLaw(law.title, law.desc)">Revoke</div></td>
+                    <td v-if="law.in_active && law.is_signed && is_senator && page_law_type == law.type && law.type == 'Constitution'"><div class="button is-success">Not Revocable</div></td>
+                  </tr>
+                </table>
+              </div>
+
+            </div>
           </div>
         </div>
         <div v-if="page == 'Executive Power'">

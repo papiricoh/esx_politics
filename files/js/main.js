@@ -61,17 +61,19 @@ const app = createApp({
       // Parties and senators
       ideologies: {
         result: [
-          { left: 12, center: 3, right: 32 }
+          { left: 34, center: 3, right: 32 }
         ]
       },
       parties: {
         result: [
           { name: "United Wing Party", ideology: "Conservative", desc: "The united wing party", members: ["Jose Jimenez", "Manuel Turizo"] },
           { name: "Workers Union Party", ideology: "Woke", desc: "The united workers party", members: ["Juan Guaizo", "Jenaro Lopez"] },
-          { name: "Puerto Rico Liberation Movement", ideology: "Anarco-Capitalist", desc: "The Puerto Rican Liberation Movement", members: ["Benito Perez", "Maluma Beibi", "Bryant Myers"] }
+          { name: "Puerto Rico Liberation Movement", ideology: "Anarco-Capitalist", desc: "The Puerto Rican Liberation Movement", members: ["Benito Perez", "Bryant Myers"] },
+          { name: "The Colombian Drug Cartel", ideology: "Anarco-Capitalist", desc: "The Colombian Drug Cartel", members: ["Osuna Beibi", "Maluma Beibi"] }
         ]
       },
       active_party_page: -1,
+      page_law_type: "Constitution",
 
       // Party pages
       page_party_name: "",
