@@ -7,6 +7,7 @@ const app = createApp({
       debug_mode: true,
       count: 0,
       page: "Home",
+      user_identifier: "",
       user_full_name: "John Doe",
       user_job_grade: "Citizen",
       is_senator: false,
@@ -14,41 +15,27 @@ const app = createApp({
       is_member_of_cabinet: false,
       is_election_day: false,
       days_until_next_election: 12,
-      // CHART
-      chartOptions: {
-        chart: {
-          id: "vuechart-example",
-        },
-        xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
-        },
-      },
-      series: [
-        {
-          name: "series-1",
-          data: [30, 40, 35, 50, 49, 60, 70, 91],
-        },
-      ],
+
 
       // Election Variables
       election: false,
       v_candidates: {
         results: [
-          { name: "juan", lastname: "Cuesta", party: "Cimadevilla", voted: false, num_votes: 50 },
-          { name: "Adolf", lastname: "Jk", party: "Berlin", voted: false, num_votes: 420 },
-          { name: "jerry", lastname: "Smith", party: "Albuquerque", voted: false, num_votes: 20 },
-          { name: "Rodrigo", lastname: "De Borbon", party: "Oviedin", voted: false, num_votes: 20 },
-          { name: "Juan", lastname: "Juanito", party: "JJ", voted: false, num_votes: 20 }
+          { name: "juan", lastname: "Cuesta", id: "", party: "Cimadevilla", voted: false, num_votes: 50 },
+          { name: "Adolf", lastname: "Jk", id: "", party: "Berlin", voted: false, num_votes: 420 },
+          { name: "jerry", lastname: "Smith", id: "", party: "Albuquerque", voted: false, num_votes: 20 },
+          { name: "Rodrigo", lastname: "De Borbon", id: "", party: "Oviedin", voted: false, num_votes: 20 },
+          { name: "Juan", lastname: "Juanito", id: "", party: "JJ", voted: false, num_votes: 20 }
 
         ]
       },
       laws: {
         result: [
-          { title: "Millitary Act", desc: "Desc", type: "Amendment", proposed_by: "Juan", for: 0, against: 0, abs: 0, in_active: false, is_signed: false, already_voted: 0 }, //Already voted 0:no, 1:for, 2:against, 3: abs
-          { title: "Constitucion of San Andreas", desc: "First Article: HELLO", type: "Constitution", proposed_by: "Los Santos Council", for: 120, against: 34, abs: 32, in_active: true, is_signed: true, already_voted: 1 },
-          { title: "Free Minecraft Bill", desc: "Free minecraft for everyone", type: "Bill", proposed_by: "Jeb", for: 120, against: 65, abs: 123, in_active: true, is_signed: false, already_voted: 2 },
-          { title: "Free Minecraft Bill", desc: "Free minecraft for everyone", type: "Bill", proposed_by: "Jeb", for: 120, against: 65, abs: 123, in_active: true, is_signed: true, already_voted: 2 },
-          { title: "Free Minecraft Bill", desc: "Free minecraft for everyone", type: "Bill", proposed_by: "Jeb", for: 120, against: 65, abs: 123, in_active: true, is_signed: false, already_voted: 2 }
+          { title: "Millitary Act", desc: "Desc", type: "Amendment", proposed_by: "Juan", proposed_by_id: "", for: 0, against: 0, abs: 0, in_active: false, is_signed: false, already_voted: 0 }, //Already voted 0:no, 1:for, 2:against, 3: abs
+          { title: "Constitucion of San Andreas", desc: "First Article: HELLO", type: "Constitution", proposed_by: "Los Santos Council", proposed_by_id: "", for: 120, against: 34, abs: 32, in_active: true, is_signed: true, already_voted: 1 },
+          { title: "Free Minecraft Bill", desc: "Free minecraft for everyone", type: "Bill", proposed_by: "Jeb", proposed_by_id: "", for: 120, against: 65, abs: 123, in_active: true, is_signed: false, already_voted: 2 },
+          { title: "Free Minecraft Bill", desc: "Free minecraft for everyone", type: "Bill", proposed_by: "Jeb", proposed_by_id: "", for: 120, against: 65, abs: 123, in_active: true, is_signed: true, already_voted: 2 },
+          { title: "Free Minecraft Bill", desc: "Free minecraft for everyone", type: "Bill", proposed_by: "Jeb", proposed_by_id: "", for: 120, against: 65, abs: 123, in_active: true, is_signed: false, already_voted: 2 }
 
         ]
       },
@@ -69,10 +56,8 @@ const app = createApp({
       },
       parties: {
         result: [
-          { name: "United Wing Party", ideology: "Conservative", desc: "The united wing party", members: ["Jose Jimenez", "Manuel Turizo"] },
-          { name: "Workers Union Party", ideology: "Woke", desc: "The united workers party", members: ["Juan Guaizo", "Jenaro Lopez"] },
-          { name: "Puerto Rico Liberation Movement", ideology: "Anarco-Capitalist", desc: "The Puerto Rican Liberation Movement", members: ["Benito Perez", "Bryant Myers"] },
-          { name: "The Colombian Drug Cartel", ideology: "Anarco-Capitalist", desc: "The Colombian Drug Cartel", members: ["Osuna Beibi", "Maluma Beibi"] }
+          { name: "United Wing Party", ideology: "Conservative", desc: "The united wing party", members: [{ name: "Jose Jimenez", id: "", is_leader: true }, { name: "Jose Jimenez", id: "", is_leader: false }] },
+          { name: "Workers Union Party", ideology: "Woke", desc: "The united workers party", members: [{ name: "Javier Iglesias", id: "", is_leader: true }, { name: "Benito Lopez", id: "", is_leader: false }, { name: "Luis Manero", id: "", is_leader: false }, { name: "Adolfo Astorgano", id: "", is_leader: false }, { name: "Adrian Romero", id: "", is_leader: false }] }
         ]
       },
       active_party_page: -1,
@@ -82,7 +67,15 @@ const app = createApp({
       page_party_name: "",
       page_party_ideology: "",
       page_party_members: "",
-      page_party_desc: ""
+      page_party_desc: "",
+
+
+      // Executive Power
+      ministeries: {
+        result: [
+          { name: "", minister_full_name: "", funtion: "" }
+        ]
+      }
 
     }
   },
@@ -136,7 +129,11 @@ const app = createApp({
         this.page_party_desc = this.parties.result[index].desc,
         this.page_party_members = "",
         this.parties.result[index].members.forEach(i => {
-          this.page_party_members = this.page_party_members + i + ",\n";
+          if (i.is_leader) {
+            this.page_party_members = this.page_party_members + i.name + " (Leader),\n";
+          } else {
+            this.page_party_members = this.page_party_members + i.name + ",\n";
+          }
         })
       this.page_party_members = this.page_party_members.substring(0, this.page_party_members.length - 2);
     },
