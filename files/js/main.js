@@ -45,6 +45,8 @@ const app = createApp({
         result: [
           { title: "Millitary Act", desc: "Desc", type: "Amendment", proposed_by: "Juan", for: 0, against: 0, abs: 0, in_active: false, is_signed: false, already_voted: 0 }, //Already voted 0:no, 1:for, 2:against, 3: abs
           { title: "Constitucion of San Andreas", desc: "First Article: HELLO", type: "Constitution", proposed_by: "Los Santos Council", for: 120, against: 34, abs: 32, in_active: true, is_signed: true, already_voted: 1 },
+          { title: "Free Minecraft Bill", desc: "Free minecraft for everyone", type: "Bill", proposed_by: "Jeb", for: 120, against: 65, abs: 123, in_active: true, is_signed: false, already_voted: 2 },
+          { title: "Free Minecraft Bill", desc: "Free minecraft for everyone", type: "Bill", proposed_by: "Jeb", for: 120, against: 65, abs: 123, in_active: true, is_signed: true, already_voted: 2 },
           { title: "Free Minecraft Bill", desc: "Free minecraft for everyone", type: "Bill", proposed_by: "Jeb", for: 120, against: 65, abs: 123, in_active: true, is_signed: false, already_voted: 2 }
 
         ]
