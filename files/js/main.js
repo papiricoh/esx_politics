@@ -8,6 +8,7 @@ const app = createApp({
       count: 0,
       page: "Home",
       user_full_name: "John Doe",
+      user_job_grade: "Citizen",
       is_senator: false,
       is_president: false,
       is_member_of_cabinet: false,

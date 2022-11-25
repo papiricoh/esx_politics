@@ -36,12 +36,27 @@ h1 {
 
 }
 
+.full_name_box {
+  background-color: white;
+  border-radius: 5px;
+  border-bottom-right-radius: 220px 80px;
+  margin-right: 650px;
+  align-self: center;
+}
+
+.full_name_display {
+  text-align: left;
+  padding-left: 15px;
+}
+
+
 .center_grid {
   display: grid;
   grid-template-columns: 50% auto;
   gap: 10px;
 
 }
+
 .padding_centered {
   padding-left: 200px;
   padding-right: 200px;
