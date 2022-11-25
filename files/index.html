@@ -295,14 +295,17 @@
           <p>DEBUG: Executive Power</p>
         </div>
         <div v-if="page == 'Law Reader'">
-          <div class="box">
-            <div class="padding_centered">
-              <div class="box">
-              <div class="subtitle">{{reading_law_title}}</div>{{reading_law_type}}</div>
-              <div class="box" id="law_desc"><p>{{reading_law_desc}}</p></div>
+          <div class="padding_centered">
+            <div class="box">
+              <div>
+                <div class="box">
+                  <div class="subtitle">{{reading_law_title}}</div> <hr> {{reading_law_type}}
+                </div>
+                <div class="box" id="law_desc"><p>{{reading_law_desc}}</p></div>
+              </div>
+              <br>
+              <div class="button is-info" @click="page='Senate Voting'">Go Back</div>
             </div>
-            <br>
-            <div class="button is-info" @click="page='Senate Voting'">Go Back</div>
           </div>
         </div>
         <div v-if="page == 'Admin'" class="menu">
