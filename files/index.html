@@ -292,7 +292,26 @@
           </div>
         </div>
         <div v-if="page == 'Executive Power'">
-          <p>DEBUG: Executive Power</p>
+          <div class="tile is-ancestor">
+            <div class="tile is-vertical is-8">
+              <div class="tile">
+                <div v-for="(ministry, i) in ministeries.result" class="tile is-parent is-vertical">
+                  <article v-if="i%3 == 0" class="tile is-child notification is-warning">
+                    <p class="title">{{ministry.name}}</p>
+                    <p class="subtitle">{{ministry.leader_grade}}: <span class="subtitle">{{ministry.minister_full_name}}</span></p>
+                  </article>
+                  <article v-else-if="i%2 == 0" class="tile is-child notification is-primary">
+                    <p class="title">{{ministry.name}}</p>
+                    <p class="subtitle">{{ministry.leader_grade}}: <span class="subtitle">{{ministry.minister_full_name}}</span></p>
+                  </article>
+                  <article v-else class="tile is-child notification is-info">
+                    <p class="title">{{ministry.name}}</p>
+                    <p class="subtitle">{{ministry.leader_grade}}: <span class="subtitle">{{ministry.minister_full_name}}</span></p>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div v-if="page == 'Law Reader'">
           <div class="padding_centered">
