@@ -76,6 +76,7 @@ const app = createApp({
           { name: "Department of State", leader_grade: "Secretary of State", minister_full_name: "John Doe", minister_id: "" },
           { name: "Department of State", leader_grade: "Secretary of State", minister_full_name: "John Doe", minister_id: "" },
           { name: "Department of State", leader_grade: "Secretary of State", minister_full_name: "John Doe", minister_id: "" },
+          { name: "Department of State", leader_grade: "Secretary of State", minister_full_name: "John Doe", minister_id: "" },
           { name: "Department of Inner Security", leader_grade: "Secretary of Inner Security", minister_full_name: "John Doe", minister_id: "" }
         ]
       }

@@ -35,8 +35,8 @@
             <li v-else ><a @click="page = 'Election'"><span class="icon is-small"><i class="fas fa-check-to-slot" aria-hidden="true"></i></span>Election</a></li>
             <li v-if="page == 'Senate Voting'" class="is-active"><a @click="page = 'Senate Voting', create_law_type_error = 'null'"><span class="icon is-small"><i class="fas fa-landmark-flag" aria-hidden="true"></i></span>Senate Voting</a></li>
             <li v-else ><a @click="page = 'Senate Voting', create_law_type_error = 'null'"><span class="icon is-small"><i class="fas fa-landmark-flag" aria-hidden="true"></i></span>Senate Voting</a></li>
-            <li v-if="page == 'Executive Power'" class="is-active"><a @click="page = 'Executive Power'"><span class="icon is-small"><i class="fas fa-briefcase" aria-hidden="true"></i></span>Executive Power</a></li>
-            <li v-else ><a @click="page = 'Executive Power'"><span class="icon is-small"><i class="fas fa-briefcase" aria-hidden="true"></i></span>Executive Power</a></li>
+            <li v-if="page == 'Executive Power' && (is_member_of_cabinet || is_president)" class="is-active"><a @click="page = 'Executive Power'"><span class="icon is-small"><i class="fas fa-briefcase" aria-hidden="true"></i></span>Executive Power</a></li>
+            <li v-if="page != 'Executive Power' && (is_member_of_cabinet || is_president)" ><a @click="page = 'Executive Power'"><span class="icon is-small"><i class="fas fa-briefcase" aria-hidden="true"></i></span>Executive Power</a></li>
             <li v-if="page == 'Admin' && debug_mode" class="is-active"><a @click="page = 'Admin'"><span class="icon is-small"><i class="fa-solid fa-hammer"></i></span>Admin Menu</a></li>
             <li v-if="page != 'Admin' && debug_mode" ><a @click="page = 'Admin'"><span class="icon is-small"><i class="fa-solid fa-hammer"></i></span>Admin Menu</a></li>
           </ul>
@@ -239,27 +239,21 @@
             <div class="middle_grid">
               <div class="box">
                 <aside class="menu">
-                  <p class="menu-label">
-                    Constitutional Legislation <!-- Amendment -->
-                  </p>
+                  <p class="menu-label">Constitutional Legislation <!-- Amendment --></p>
                   <ul class="menu-list">
                     <li v-if="page_law_type == 'Constitution'"><a class="is-active">Constitution</a></li>
                     <li v-else @click="page_law_type = 'Constitution'"><a>Constitution</a></li>
                     <li v-if="page_law_type == 'Amendment'"><a class="is-active">Amendment</a></li>
                     <li v-else @click="page_law_type = 'Amendment'"><a>Amendment</a></li>
                   </ul>
-                  <p class="menu-label">
-                    State Legislation
-                  </p>
+                  <p class="menu-label">State Legislation</p>
                   <ul class="menu-list">
                     <li v-if="page_law_type == 'Bill'"><a class="is-active">Bill</a></li>
                     <li v-else @click="page_law_type = 'Bill'"><a>Bill</a></li>
                     <li v-if="page_law_type == 'National Law'"><a class="is-active">National Law</a></li>
                     <li v-else @click="page_law_type = 'National Law'"><a>National Law</a></li>
                   </ul>
-                  <p class="menu-label">
-                    City Legislation
-                  </p>
+                  <p class="menu-label">City Legislation</p>
                   <ul class="menu-list">
                     <li v-if="page_law_type == 'Regional Law'"><a class="is-active">Regional Law</a></li>
                     <li v-else @click="page_law_type = 'Regional Law'"><a>Regional Law</a></li>
@@ -287,30 +281,12 @@
                   </tr>
                 </table>
               </div>
-
             </div>
           </div>
         </div>
         <div v-if="page == 'Executive Power'">
-          <div class="tile is-ancestor">
-            <div class="tile is-vertical is-8">
-              <div class="tile">
-                <div v-for="(ministry, i) in ministeries.result" class="tile is-parent is-vertical">
-                  <article v-if="i%3 == 0" class="tile is-child notification is-warning">
-                    <p class="title">{{ministry.name}}</p>
-                    <p class="subtitle">{{ministry.leader_grade}}: <span class="subtitle">{{ministry.minister_full_name}}</span></p>
-                  </article>
-                  <article v-else-if="i%2 == 0" class="tile is-child notification is-primary">
-                    <p class="title">{{ministry.name}}</p>
-                    <p class="subtitle">{{ministry.leader_grade}}: <span class="subtitle">{{ministry.minister_full_name}}</span></p>
-                  </article>
-                  <article v-else class="tile is-child notification is-info">
-                    <p class="title">{{ministry.name}}</p>
-                    <p class="subtitle">{{ministry.leader_grade}}: <span class="subtitle">{{ministry.minister_full_name}}</span></p>
-                  </article>
-                </div>
-              </div>
-            </div>
+          <div>
+            
           </div>
         </div>
         <div v-if="page == 'Law Reader'">
