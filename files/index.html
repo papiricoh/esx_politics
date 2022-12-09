@@ -286,21 +286,27 @@
           </div>
         </div>
         <div v-if="page == 'Executive Power'">
-          <div class="box">
-            <div class="flex_ministeries" v-for="(ministerie, i) in ministeries.result"> <!-- FOR LOOP HERE -->
-              <div class="box card separator ministerie">
-                <div class="card-content">
-                  <div class="media">
-                    <div class="media-content">
-                      <p class="title is-4">{{ministerie.name}}</p>
-                      <p class="subtitle is-6">{{ministerie.leader_grade}}: {{ministerie.minister_full_name}}</p>
+          <div class="dual_grid">
+            <div class="box">
+              <div class="flex_ministeries" v-for="(ministerie, i) in ministeries.result" :key="i"> <!-- FOR LOOP HERE -->
+                <div class="box card separator ministerie">
+                  <div class="card-content">
+                    <div class="media">
+                      <div class="media-content">
+                        <p class="title is-4">{{ministerie.name}}</p>
+                        <p class="subtitle is-6">{{ministerie.leader_grade}}: {{ministerie.minister_full_name}}</p>
+                      </div>
                     </div>
-                  </div>
-                  <div class="content">
-                    {{ministerie.desc}}
+                    <hr>
+                    <div class="content">
+                      {{ministerie.desc}}
+                    </div>
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="box">
+
             </div>
           </div>
         </div>
