@@ -125,7 +125,7 @@
           <div v-if="is_election_day" class="box"> <!-- SI ES DIA DE ELECCIONES -->
             <h2 v-if="election == true">ELECTION DAY</h2>
             <h3 class="subtitle">Avariable candidates to elect: {{v_candidates.results.length}}</h3>
-            <table class="table">
+            <table class="table is-bordered">
               <tr>
                 <th>Name</th>
                 <th>Last Name</th>
@@ -172,7 +172,7 @@
           <div v-if="is_senator" class="box">
             <div class="box">
               <h1 class="subtitle">Pending laws</h1>
-              <table class="table">
+              <table class="table is-bordered">
                 <tr>
                   <th>Law Name</th>
                   <th>Law Type</th>
@@ -264,7 +264,7 @@
                 </aside>
               </div>
               <div clas="box">
-                <table class="table">
+                <table class="table is-bordered">
                   <tr>
                     <th>Law Name</th>
                     <th>Law Type</th>
@@ -286,8 +286,22 @@
           </div>
         </div>
         <div v-if="page == 'Executive Power'">
-          <div>
-            
+          <div class="box">
+            <div class="flex_ministeries" v-for="(ministerie, i) in ministeries.result"> <!-- FOR LOOP HERE -->
+              <div class="box card separator ministerie">
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-content">
+                      <p class="title is-4">{{ministerie.name}}</p>
+                      <p class="subtitle is-6">{{ministerie.leader_grade}}: {{ministerie.minister_full_name}}</p>
+                    </div>
+                  </div>
+                  <div class="content">
+                    {{ministerie.desc}}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div v-if="page == 'Law Reader'">

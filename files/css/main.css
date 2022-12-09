@@ -17,6 +17,25 @@ h1 {
   margin-right: auto;
 }
 
+.ministerie {
+  background-color: lightblue;
+  border: 2px solid black;
+  border-radius: 12px;
+  margin: 4px;
+}
+
+.separator {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.flex_ministeries {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 180px;
+  margin-left: 180px;
+}
+
 .party_data {
   display: grid;
   grid-template-columns: 220px auto;

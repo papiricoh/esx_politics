@@ -73,11 +73,10 @@ const app = createApp({
       // Executive Power
       ministeries: {
         result: [
-          { name: "Department of State", leader_grade: "Secretary of State", minister_full_name: "John Doe", minister_id: "" },
-          { name: "Department of State", leader_grade: "Secretary of State", minister_full_name: "John Doe", minister_id: "" },
-          { name: "Department of State", leader_grade: "Secretary of State", minister_full_name: "John Doe", minister_id: "" },
-          { name: "Department of State", leader_grade: "Secretary of State", minister_full_name: "John Doe", minister_id: "" },
-          { name: "Department of Inner Security", leader_grade: "Secretary of Inner Security", minister_full_name: "John Doe", minister_id: "" }
+          { name: "Department of State", leader_grade: "Secretary of State", minister_full_name: "John Doe", minister_id: "", desc: "The Department of State takes responsability of the foreign affairs of the San Andreas Republic" },
+          { name: "Department of State", leader_grade: "Secretary of State", minister_full_name: "John Doe", minister_id: "", desc: "The Department of State takes responsability of the foreign affairs of the San Andreas Republic" },
+          { name: "Department of State", leader_grade: "Secretary of State", minister_full_name: "John Doe", minister_id: "", desc: "The Department of State takes responsability of the foreign affairs of the San Andreas Republic" },
+          { name: "Department of State", leader_grade: "Secretary of State", minister_full_name: "John Doe", minister_id: "", desc: "The Department of State takes responsability of the foreign affairs of the San Andreas Republic" }
         ]
       }
 
