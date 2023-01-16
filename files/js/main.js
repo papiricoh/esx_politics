@@ -12,6 +12,7 @@ const app = createApp({
       user_job_grade: "Citizen",
       is_senator: false,
       is_president: false,
+      is_judge: false,
       is_member_of_cabinet: false,
       is_election_day: false,
       days_until_next_election: 12,

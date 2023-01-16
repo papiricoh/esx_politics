@@ -34,8 +34,8 @@
             <li v-else ><a @click="page = 'Seats'"><span class="icon is-small"><i class="fas fa-chair" aria-hidden="true"></i></span>Seats</a></li>
             <li v-if="page == 'Election'" class="is-active"><a @click="page = 'Election'"><span class="icon is-small"><i class="fas fa-check-to-slot" aria-hidden="true"></i></span>Election</a></li>
             <li v-else ><a @click="page = 'Election'"><span class="icon is-small"><i class="fas fa-check-to-slot" aria-hidden="true"></i></span>Election</a></li>
-            <li v-if="page == 'Court'" class="is-active"><a @click="page = 'Court'"><span class="icon is-small"><i class="fa-solid fa-gavel" aria-hidden="true"></i></span>Court</a></li>
-            <li v-else ><a @click="page = 'Court'"><span class="icon is-small"><i class="fa-solid fa-gavel" aria-hidden="true"></i></span>Court</a></li>
+            <!--<li v-if="page == 'Court'" class="is-active"><a @click="page = 'Court'"><span class="icon is-small"><i class="fa-solid fa-gavel" aria-hidden="true"></i></span>Court</a></li>
+            <li v-else ><a @click="page = 'Court'"><span class="icon is-small"><i class="fa-solid fa-gavel" aria-hidden="true"></i></span>Court</a></li>-->
             <li v-if="page == 'Senate Voting'" class="is-active"><a @click="page = 'Senate Voting', create_law_type_error = 'null'"><span class="icon is-small"><i class="fas fa-landmark-flag" aria-hidden="true"></i></span>Senate Voting</a></li>
             <li v-else ><a @click="page = 'Senate Voting', create_law_type_error = 'null'"><span class="icon is-small"><i class="fas fa-landmark-flag" aria-hidden="true"></i></span>Senate Voting</a></li>
             <li v-if="page == 'Executive Power' && (is_member_of_cabinet || is_president)" class="is-active"><a @click="page = 'Executive Power'"><span class="icon is-small"><i class="fas fa-briefcase" aria-hidden="true"></i></span>Executive Power</a></li>
